@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (correo, contrasena) => {
     try {
-      const response = await axios.post('http://localhost:5000/login', { correo, contrasena });
+      const response = await axios.post('https://backend-4uac.onrender.com/login', { correo, contrasena });
       if (response.data.success) {
         setIsAuthenticated(true);
         setUser(response.data.user);
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (user) => {
     try {
-      const response = await axios.post('http://localhost:5000/register', user);
+      const response = await axios.post('https://backend-4uac.onrender.com/register', user);
       if (response.data.success) {
         setIsAuthenticated(true);
         setUser(response.data.user);

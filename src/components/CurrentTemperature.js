@@ -7,7 +7,7 @@ function CurrentTemperature({ userId }) {
   useEffect(() => {
     const fetchTemperature = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/latest-temperature?usuario_id=${userId}`);
+        const response = await axios.get(`https://backend-4uac.onrender.com/latest-temperature?usuario_id=${userId}`);
         setTemperature(response.data.temperature);
       } catch (error) {
         console.error('Error fetching temperature:', error);

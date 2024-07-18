@@ -38,7 +38,7 @@ function User() {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.put('http://localhost:5000/updateProfile', profileData);
+      const response = await axios.put('https://backend-4uac.onrender.com/updateProfile', profileData);
       if (response.data.success) {
         alert('Datos actualizados correctamente');
         setUser(profileData); 

@@ -15,7 +15,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchPhData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/ph-levels?usuario_id=${userId}`);
+        const response = await axios.get(`https://backend-4uac.onrender.com/ph-levels?usuario_id=${userId}`);
         setPhData(response.data);
       } catch (error) {
         console.error('Error fetching pH data:', error);
@@ -24,7 +24,7 @@ function Dashboard() {
 
     const fetchTemperatureData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/temperature-levels?usuario_id=${userId}`);
+        const response = await axios.get(`https://backend-4uac.onrender.com/temperature-levels?usuario_id=${userId}`);
         setTemperatureData(response.data);
       } catch (error) {
         console.error('Error fetching temperature data:', error);
@@ -33,7 +33,7 @@ function Dashboard() {
 
     const fetchOrpData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/orp-levels?usuario_id=${userId}`);
+        const response = await axios.get(`https://backend-4uac.onrender.com/orp-levels?usuario_id=${userId}`);
         setOrpData(response.data);
       } catch (error) {
         console.error('Error fetching ORP data:', error);
