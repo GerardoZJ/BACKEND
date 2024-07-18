@@ -1,0 +1,37 @@
+
+.button-container .btn-primary {
+  background-color: #1e90ff; 
+  border-color: #1e90ff; 
+}
+
+.button-container .btn-primary:hover {
+  background-color: #1c85ee9b; 
+  border-color: #1c85ee8f; 
+}
+
+.button-container .btn-danger {
+  background-color: #1e90ff; 
+  border-color: rgba(30, 143, 255, 0.507)7a; 
+}
+
+.button-container .btn-danger:hover {
+  background-color: #1c86ee; 
+  border-color: #1c86ee; 
+}
+
+
+.card-body label {
+  color: black; 
+}
+
+.card-body input {
+  color: black; 
+}
+
+.author .title {
+  color: #1e8fff88; 
+}
+
+.author .avatar-icon {
+  color: #1e8fff8e; 
+}

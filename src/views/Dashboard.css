@@ -1,0 +1,39 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.clock-container {
+  text-align: left;
+}
+
+.clock-time {
+  font-size: 3em;
+  color: white; 
+}
+
+.clock-date {
+  font-size: 1.5em;
+  color: white; 
+}
+
+.temperature-container {
+  text-align: right;
+}
+
+.temperature-value {
+  font-size: 3em;
+  color: white; 
+}
+
+.temperature-location {
+  font-size: 1.5em;
+  color: white; 
+}
+
+.temperature-icon {
+  font-size: 2em;
+  color: white; 
+}

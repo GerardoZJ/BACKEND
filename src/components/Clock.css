@@ -1,0 +1,14 @@
+.clock-container {
+  text-align: center;
+  margin-top: -3%;
+  color: white;
+  font-family: 'Digital-7 Mono', sans-serif; 
+}
+
+.time {
+  font-size: 5rem;
+}
+
+.date {
+  font-size: 1.5rem;
+}

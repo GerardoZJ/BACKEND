@@ -1,0 +1,15 @@
+.current-temperature {
+  background: linear-gradient(45deg, #00aaff, #0077ff);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.temperature-value {
+  font-size: 2em;
+  font-weight: bold;
+}
+
