@@ -5,22 +5,19 @@ const cors = require('cors');
 
 const app = express();
 
-
-app.use(cors({
-    origin: 'https://smartacuatics.neuroseeq.com', // Cambia esto a la URL de tu frontend
-    methods: ['GET', 'POST', 'PUT'], // Métodos permitidos
-    credentials: true // Si necesitas enviar cookies
-}));
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use(bodyParser.json());
 
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: 'smartacuatics.neuroseeq.com', 
+    user: 'u475816193_caso', 
+    password: 'Aguas2004??', 
+    database: 'u475816193_caso', 
 });
+
 
 
 db.connect((err) => {
