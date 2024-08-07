@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -7,6 +7,9 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(bodyParser.json());
+
 
 const createConnection = () => {
     return mysql.createConnection({
@@ -27,22 +30,12 @@ db.connect((err) => {
         setTimeout(() => {
             db = createConnection();
             db.connect();
-        }, 2000); // Reintentar después de 2 segundos
+        }, 2000); 
         return;
     }
     console.log('MySQL Connected...');
 });
 
-db.on('error', (err) => {
-    console.error('MySQL error:', err);
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-        // La conexión se perdió, intenta reconectar
-        db = createConnection();
-        db.connect();
-    } else {
-        throw err;
-    }
-});
 
 app.put('/updateProfile', (req, res) => {
     const { id, nombre, correo, contrasena } = req.body;
