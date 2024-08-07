@@ -4,8 +4,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+
+app.use(cors({
+    origin: 'https://smartacuatics.neuroseeq.com', // Cambia esto a la URL de tu frontend
+    methods: ['GET', 'POST', 'PUT'], // Métodos permitidos
+    credentials: true // Si necesitas enviar cookies
+}));
+
 app.use(bodyParser.json());
+
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -14,9 +22,11 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 });
 
+
 db.connect((err) => {
     if (err) {
-        throw err;
+        console.error('Error connecting to MySQL:', err);
+        return;
     }
     console.log('MySQL Connected...');
 });
@@ -99,7 +109,6 @@ app.get('/orp-levels', (req, res) => {
         }
     });
 });
-
 
 app.get('/latest-temperature', (req, res) => {
     const query = 'SELECT temperature, date FROM temperature_levels ORDER BY date DESC LIMIT 1';
