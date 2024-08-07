@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -8,26 +8,41 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(bodyParser.json());
+const createConnection = () => {
+    return mysql.createConnection({
+        host: 'smartacuatics.neuroseeq.com',
+        user: 'u475816193_caso',
+        password: 'Aguas2004?',
+        database: 'u475816193_caso',
+        connectTimeout: 10000,
+        acquireTimeout: 60000
+    });
+};
 
-
-const db = mysql.createConnection({
-    host: 'smartacuatics.neuroseeq.com', 
-    user: 'u475816193_caso', 
-    password: 'Aguas2004?', 
-    database: 'u475816193_caso', 
-});
-
-
+let db = createConnection();
 
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err);
+        setTimeout(() => {
+            db = createConnection();
+            db.connect();
+        }, 2000); // Reintentar después de 2 segundos
         return;
     }
     console.log('MySQL Connected...');
 });
 
+db.on('error', (err) => {
+    console.error('MySQL error:', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+        // La conexión se perdió, intenta reconectar
+        db = createConnection();
+        db.connect();
+    } else {
+        throw err;
+    }
+});
 
 app.put('/updateProfile', (req, res) => {
     const { id, nombre, correo, contrasena } = req.body;
