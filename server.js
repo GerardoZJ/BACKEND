@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
     host: 'smartacuatics.neuroseeq.com', 
     user: 'u475816193_caso', 
-    password: 'Aguas2004??', 
+    password: 'Aguas2004?', 
     database: 'u475816193_caso', 
 });
 
