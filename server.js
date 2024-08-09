@@ -2,13 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
+
 
 const createConnection = () => {
     return mysql.createConnection({
@@ -34,6 +35,7 @@ db.connect((err) => {
     }
     console.log('MySQL Connected...');
 });
+
 
 app.put('/updateProfile', (req, res) => {
     const { id, nombre, correo, contrasena } = req.body;
@@ -122,14 +124,6 @@ app.get('/latest-temperature', (req, res) => {
             res.json(result[0]);
         }
     });
-});
-
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
