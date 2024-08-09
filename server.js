@@ -1,41 +1,43 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
-
-
-const createConnection = () => {
-    return mysql.createConnection({
-        host: 'smartacuatics.neuroseeq.com',
-        user: 'u475816193_caso',
-        password: 'Aguas2004?',
-        database: 'u475816193_caso',
-        connectTimeout: 10000,
-        acquireTimeout: 60000
-    });
-};
-
-let db = createConnection();
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectTimeout: 10000,
+    acquireTimeout: 60000
+});
 
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err);
         setTimeout(() => {
-            db = createConnection();
+            db = mysql.createConnection({
+                host: process.env.DB_HOST,
+                user: process.env.DB_USER,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_NAME,
+                connectTimeout: 10000,
+                acquireTimeout: 60000
+            });
             db.connect();
         }, 2000); 
         return;
     }
     console.log('MySQL Connected...');
 });
-
 
 app.put('/updateProfile', (req, res) => {
     const { id, nombre, correo, contrasena } = req.body;
@@ -124,6 +126,12 @@ app.get('/latest-temperature', (req, res) => {
             res.json(result[0]);
         }
     });
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;

@@ -3,7 +3,7 @@
   "version": "1.5.2",
   "main": "dist/index.js",
   "private": true,
-  "homepage": "https://smartacuatics.neuroseeq.com/login",
+  "homepage": "/login",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -34,7 +34,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
